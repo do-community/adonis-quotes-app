@@ -1,13 +1,5 @@
-
-@layout('layouts/app')
+@layout('layouts/master')
 @section('content')
-@include('layouts/navbar')
-
-@loggedIn
-<div class="text-right">
-    <a href="{{route('create.quote')}}" class="btn btn-outline-primary">Create Quote</a>
-</div>
-@endloggedIn
   
 <div class="container">
 

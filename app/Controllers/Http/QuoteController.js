@@ -13,11 +13,9 @@ class QuoteController {
    * GET quotes
    *
    * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
    * @param {View} ctx.view
    */
-  async index ({ request, response, view }) {
+  async index ({ view }) {
     const quote = await Quote.all()
     return view.render('index', {
       quotes: quote.toJSON()
@@ -29,12 +27,10 @@ class QuoteController {
    * GET quotes/create
    *
    * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
    * @param {View} ctx.view
    */
-  async create ({ request, response, view }) {
-    return view.render('dashboard.create-quote')
+  async create ({ view }) {
+    return view.render('quotes.create-quote')
   }
 
   /**
@@ -61,14 +57,12 @@ class QuoteController {
    * GET quotes/:id
    *
    * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
    * @param {View} ctx.view
    */
-  async show ({ params, request, response, view }) {
+  async show ({ params, view }) {
     const quote = await Quote.find(params.id)
 
-    return view.render('dashboard.view-quote', {
+    return view.render('quotes.view-quote', {
       quote: quote.toJSON()
     })
   }
@@ -78,13 +72,11 @@ class QuoteController {
    * GET quotes/:id/edit
    *
    * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
    * @param {View} ctx.view
    */
-  async edit ({ params, request, response, view }) {
+  async edit ({ params, view }) {
     const quote = await Quote.find(params.id)
-    return view.render('dashboard.edit-quote', {
+    return view.render('quotes.edit-quote', {
       quote: quote.toJSON()
     })
   }
@@ -115,7 +107,7 @@ class QuoteController {
    * @param {Request} ctx.request
    * @param {Response} ctx.response
    */
-  async destroy ({ params, request, response, session }) {
+  async destroy ({ params, response, session }) {
     const quote = await Quote.find(params.id)
     await quote.delete()
     session.flash({'successmessage': 'Quote has been deleted'})

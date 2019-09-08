@@ -44,6 +44,10 @@ section {
   color: #ffffff;
 }
 
+form {
+  padding: 20px;
+}
+
 section:before {
   content: "";
   position: absolute;
